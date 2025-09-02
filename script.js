@@ -63,10 +63,25 @@ for(let i=0; i<callArray.length ;i++){
 
 //clear history 
 document.getElementById('clear-btn').addEventListener('click', function(){
-    document.getElementById('data-container').innerText='';
+    document.getElementById('data-container').innerHTML='';
 })
 
 //copy copy 
+const copyArray = document.getElementsByClassName('copy-btn')
+let copyCount = 0;
+for(let i=0; i< copyArray.length; i++){
+    copyArray[i].addEventListener('click', function(){
+        navigator.clipboard.writeText(getNumber(i))
+        .then(function(){
+            alert('✔ Copied: '+getNumber(i))
+            copyCount = copyCount + 1;
+            document.getElementById('copy-box').innerText = copyCount;
+        })
+        .catch(function(){
+            alert('⚠ Failed to copy!')
+        })
+    })
+}
 
 
 
